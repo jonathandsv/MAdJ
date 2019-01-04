@@ -44,8 +44,8 @@ namespace MAJS.Data
                         evento.IDEventoPerfil = Convert.ToInt32(reader["IDEventoPerfil"]);
                         evento.Titulo = reader["Titulo"].ToString();
                         evento.Descricao = reader["Descricao"].ToString();
-                        evento.Hora = Convert.ToDateTime(reader["Hora"]);
-                        evento.Data = Convert.ToDateTime(reader["Data"]);
+                        //evento.Hora = Convert.ToDateTime(reader["Hora"]);
+                        //evento.Data = Convert.ToDateTime(reader["Data"]);
                         evento.Local = reader["Local"].ToString();
                         eventos.Add(evento);
                     }
