@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -57,6 +58,78 @@ namespace MAJS.Data
 
                 throw ex;
             }
+        }
+
+        public int CadastrarEvento(Evento evento)
+        {
+            try
+            {
+                string _conectionstring = ConexaoBanco();
+
+                string cadastrarEventos = @"INSERT INTO Eventos (IDEventoPerfil, Titulo, Descricao, Hora, Data, Local) VALUES (@IDEventoPerfil, @Titulo, @Descricao, @Hora, @Data, @Local)";
+
+                var resultado = 0;
+                using (var sqlConn = new SqlConnection(_conectionstring))
+                {
+                    using (SqlCommand command = new SqlCommand(cadastrarEventos, sqlConn))
+                    {
+                        command.Parameters.Add("@IDEventoPerfil", SqlDbType.Int).Value = evento.IDEventoPerfil;
+                        command.Parameters.Add("@Titulo", SqlDbType.VarChar, 50).Value = evento.Titulo;
+                        command.Parameters.Add("@Descricao", SqlDbType.VarChar, 50).Value = evento.Descricao;
+                        command.Parameters.Add("@Hora", SqlDbType.DateTime).Value = DateTime.Today;
+                        command.Parameters.Add("@Data", SqlDbType.DateTime).Value = DateTime.Now;
+                        command.Parameters.Add("@Local", SqlDbType.VarChar).Value = evento.Local;
+
+                        sqlConn.Open();
+                        resultado = command.ExecuteNonQuery();
+                        sqlConn.Close();
+                    }
+                }
+
+                return (resultado);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public List<EventoPerfil> BuscarEventosPerfis()
+        {
+            try
+            {
+                string _conectionstring = ConexaoBanco();
+
+                string buscarEventosPerfis = @"SELECT * FROM EventoPerfil";
+
+                SqlConnection sqlConnection = new SqlConnection(_conectionstring);
+
+                sqlConnection.Open();
+
+                List<EventoPerfil> eventosPerfis = new List<EventoPerfil>();
+
+                using (SqlCommand sqlCommand = new SqlCommand(buscarEventosPerfis, sqlConnection))
+                {
+                    SqlDataReader reader = sqlCommand.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        EventoPerfil eventoPerfil = new EventoPerfil();
+                        eventoPerfil.ID = Convert.ToInt32(reader["ID"]);
+                        eventoPerfil.IDEventoPerfil = Convert.ToInt32(reader["IDEventoPerfil"]);
+                        eventoPerfil.Descricao = reader["Descricao"].ToString();
+                        eventosPerfis.Add(eventoPerfil);
+                    }
+                }
+                return (eventosPerfis);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            
         }
     }
 }

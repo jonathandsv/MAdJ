@@ -20,6 +20,12 @@ namespace MAJS
             );
 
             routes.MapRoute(
+                name: "eventos/NovoEvento",
+                url: "eventos/NovoEvento",
+                defaults: new { controller = "Evento", action = "NovoEvento", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
