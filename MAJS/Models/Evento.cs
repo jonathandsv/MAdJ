@@ -11,7 +11,7 @@ namespace MAJS.Models
         public int IDEventoPerfil { get; set; }
         public string Titulo { get; set; }
         public string Descricao { get; set; }
-        public DateTime Hora { get; set; }
+        public TimeSpan Hora { get; set; }
         public DateTime Data { get; set; }
         public string Local { get; set; }
     }

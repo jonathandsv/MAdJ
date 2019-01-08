@@ -363,6 +363,9 @@
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button);
+        $('#outra_data').change(function () {
+            mascaraData(this);
+        })
     </script>
     <!-- Morris.js charts -->
     <script src="~/Scripts/template/raphael.min.js"></script>
@@ -394,8 +397,14 @@
     <!-- Full calendary -->
     <script src="~/Scripts/template/fullcalendar.js"></script>
     <script src="~/Scripts/template/pt-br.js"></script>
+    <script src="~/Scripts/template/select2.full.min.js"></script>
+    <script src="~/Scripts/template/jquery.inputmask.js"></script>
+    <script src="~/Scripts/template/jquery.inputmask.date.extensions.js"></script>
+    <script src="~/Scripts/template/jquery.inputmask.extensions.js"></script>
+    <script src="~/Scripts/template/bootstrap-colorpicker.min.js"></script>
+    <script src="~/Scripts/app.js"></script>
 
-    @Scripts.Render("~/bundles/jquery")
+    
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

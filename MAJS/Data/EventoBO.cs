@@ -45,8 +45,8 @@ namespace MAJS.Data
                         evento.IDEventoPerfil = Convert.ToInt32(reader["IDEventoPerfil"]);
                         evento.Titulo = reader["Titulo"].ToString();
                         evento.Descricao = reader["Descricao"].ToString();
-                        //evento.Hora = Convert.ToDateTime(reader["Hora"]);
-                        //evento.Data = Convert.ToDateTime(reader["Data"]);
+                        evento.Hora = TimeSpan.Parse(reader["Hora"].ToString());
+                        evento.Data = DateTime.Parse(reader["Data"].ToString());
                         evento.Local = reader["Local"].ToString();
                         eventos.Add(evento);
                     }
@@ -76,8 +76,8 @@ namespace MAJS.Data
                         command.Parameters.Add("@IDEventoPerfil", SqlDbType.Int).Value = evento.IDEventoPerfil;
                         command.Parameters.Add("@Titulo", SqlDbType.VarChar, 50).Value = evento.Titulo;
                         command.Parameters.Add("@Descricao", SqlDbType.VarChar, 50).Value = evento.Descricao;
-                        command.Parameters.Add("@Hora", SqlDbType.DateTime).Value = DateTime.Today;
-                        command.Parameters.Add("@Data", SqlDbType.DateTime).Value = DateTime.Now;
+                        command.Parameters.Add("@Hora", SqlDbType.DateTime).Value = evento.Hora;
+                        command.Parameters.Add("@Data", SqlDbType.DateTime).Value = evento.Data;
                         command.Parameters.Add("@Local", SqlDbType.VarChar).Value = evento.Local;
 
                         sqlConn.Open();
