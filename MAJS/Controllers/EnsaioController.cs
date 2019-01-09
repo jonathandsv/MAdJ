@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MAJS.Data;
+using MAJS.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,8 +13,10 @@ namespace MAJS.Controllers
         // GET: Ensaio
         public ActionResult Index()
         {
+            EnsaioBO ensaioBO = new EnsaioBO();
+            List<Ensaio> ensaios = ensaioBO.GetEnsaios();
 
-            return View();
+            return View(ensaios);
         }
     }
 }
