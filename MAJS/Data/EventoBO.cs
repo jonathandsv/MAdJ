@@ -76,7 +76,7 @@ namespace MAJS.Data
                         command.Parameters.Add("@IDEventoPerfil", SqlDbType.Int).Value = evento.IDEventoPerfil;
                         command.Parameters.Add("@Titulo", SqlDbType.VarChar, 50).Value = evento.Titulo;
                         command.Parameters.Add("@Descricao", SqlDbType.VarChar, 50).Value = evento.Descricao;
-                        command.Parameters.Add("@Hora", SqlDbType.Timestamp).Value = evento.Hora;
+                        command.Parameters.Add("@Hora", SqlDbType.Time).Value = evento.Hora;
                         command.Parameters.Add("@Data", SqlDbType.DateTime).Value = evento.Data;
                         command.Parameters.Add("@Local", SqlDbType.VarChar).Value = evento.Local;
 
