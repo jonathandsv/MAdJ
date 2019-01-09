@@ -67,7 +67,7 @@
                                         <li>
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                                                    <img src="#" class="img-circle" alt="User Image">
                                                 </div>
                                                 <h4>
                                                     Developers
@@ -79,7 +79,7 @@
                                         <li>
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                                                    <img src="#" class="img-circle" alt="User Image">
                                                 </div>
                                                 <h4>
                                                     Sales Department
@@ -91,7 +91,7 @@
                                         <li>
                                             <a href="#">
                                                 <div class="pull-left">
-                                                    <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                                                    <img src="#" class="img-circle" alt="User Image">
                                                 </div>
                                                 <h4>
                                                     Reviewers
@@ -305,14 +305,14 @@
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MENU DE NAVEGAÇÃO</li>
                     <li>
-                        <a href="/Home/Index">
+                        <a href="@Url.Action("Index", "Home")">
                             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             <span class="pull-right-container">
                             </span>
                         </a>
                     </li>
                     <li>
-                        <a href="evento/index">
+                        <a href="@Url.Action("Index", "Evento")">
                             <i class="fa fa-calendar-check-o"></i><span>Eventos</span>
                             <span class="pull-right-container">
                             </span>
@@ -356,16 +356,13 @@
         </div>
 
     </div>
-
-    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @*<script src="~/Scripts/jquery-3.3.1.js"></script>*@
     <!-- jQuery UI 1.11.4 -->
     <script src="~/Scripts/template/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button);
-        $('#outra_data').change(function () {
-            mascaraData(this);
-        })
     </script>
     <!-- Morris.js charts -->
     <script src="~/Scripts/template/raphael.min.js"></script>
@@ -390,8 +387,7 @@
     <script src="~/Scripts/template/fastclick.js"></script>
     <!-- AdminLTE App -->
     <script src="~/Scripts/template/adminlte.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="~/Scripts/template/dashboard.js"></script>
+
     <!-- AdminLTE for demo purposes -->
     <script src="~/Scripts/template/demo.js"></script>
     <!-- Full calendary -->
@@ -404,7 +400,7 @@
     <script src="~/Scripts/template/bootstrap-colorpicker.min.js"></script>
     <script src="~/Scripts/app.js"></script>
 
-    
+
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
