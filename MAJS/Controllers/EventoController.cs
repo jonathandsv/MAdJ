@@ -27,7 +27,8 @@ namespace MAJS.Controllers
         }
         // Fim da Chamada de Páginas
 
-        public Evento NovoEvento(Evento evento)
+        [HttpPost]
+        public ActionResult NovoEvento(Evento evento)
         {
             if (ModelState.IsValid)
             {
@@ -42,7 +43,7 @@ namespace MAJS.Controllers
                 
             }
 
-            return (null);
+            return RedirectToAction("Index");
         }
 
         private void PreencheViewBagListaPerfilEvento()

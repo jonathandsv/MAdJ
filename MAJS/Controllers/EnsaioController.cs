@@ -18,5 +18,27 @@ namespace MAJS.Controllers
 
             return View(ensaios);
         }
+        public ActionResult CadastrarEnsaio()
+        {
+            return View();
+        }
+        // Fim da Chamada de Páginas
+
+        [HttpPost]
+        public ActionResult NovoEnsaio(Ensaio ensaio)
+        {
+            if (ModelState.IsValid)
+            {
+                EnsaioBO ensaioBO = new EnsaioBO();
+
+                var resultado = ensaioBO.CadastrarEnsaio(ensaio);
+
+                if (resultado != 0)
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
