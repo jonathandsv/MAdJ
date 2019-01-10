@@ -1,0 +1,68 @@
+﻿@model MAJS.Models.Musica
+@{
+    Layout = null;
+    ViewBag.Title = "CadastrarMusica";
+}
+
+<div class="box box-success">
+    <div class="box-header with-border">
+        <h3 class="box-title">Evento</h3>
+    </div>
+    <!--/ Box-Header-->
+    <form role="form" id="cadastro" action="/Repertorio/NovaMusica" method="post" name="novamusica">
+        <div class="box-body">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label>Digite o Nome da Música</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-pencil"></i>
+                        </div>
+                        @Html.TextBoxFor(x => x.Nome, new { @class = "form-control", type = "text", placeholder = "Nome..." })
+                    </div>
+                </div>
+                @*<div class="form-group">
+                    <label>Insira um Link para a Letra da Música</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-pencil"></i>
+                        </div>
+                        @Html.TextBoxFor(x => x.DLetra, new { @class = "form-control", type = "text", placeholder = "Nome..." })
+                    </div>
+                </div>*@
+                <div class="form-group">
+                    <label>Insira a Letra da Música</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-edit"></i>
+                        </div>
+                        @Html.TextBoxFor(x => x.Letra, new { @class = "form-control", type = "text", placeholder = "Letra..." })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Insira o Link da Cifra</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-edit"></i>
+                        </div>
+                        @Html.TextBoxFor(x => x.DNotas, new { @class = "form-control", type = "text", placeholder = "Link da Cifra..." })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Insira o Link do Vídeo</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <i class="fa fa-youtube-play"></i>
+                        </div>
+                        @Html.TextBoxFor(x => x.CVideo, new { @class = "form-control", type = "text", placeholder = "Link do Vídeo..." })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fechar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+    </form>
+</div>
+
