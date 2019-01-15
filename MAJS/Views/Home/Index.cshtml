@@ -1,15 +1,16 @@
-﻿@{
+﻿@model MAJS.ViewModels.FeedVM
+@{
     ViewBag.Title = "Home Page";
 }
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Dashboard
+        Feed
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li class="active">Feed</li>
     </ol>
 </section>
 
@@ -20,7 +21,7 @@
 
     </div>
     <!-- /.row -->
-    <!-- Main row -->
+    @*<!-- Main row -->
     <div class="row">
         <div class="box box-solid">
             <div class="box-header with-border">
@@ -63,7 +64,7 @@
             </div>
         </div>
     </div>
-    <!-- /.row (main row) -->
+    <!-- /.row (main row) -->*@
 
     <div class="row">
         <div class="col-md-12">
@@ -72,7 +73,7 @@
                 <!-- timeline time label -->
                 <li class="time-label">
                     <span class="bg-red">
-                        10 Feb. 2014
+                        @Model.Postagem.Data
                     </span>
                 </li>
                 <!-- /.timeline-label -->

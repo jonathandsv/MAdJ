@@ -14,8 +14,20 @@ namespace MAJS
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Home/Index",
+                url: "Home/Index",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Ensaio/Index",
+                url: "Ensaio/Index",
+                defaults: new { controller = "Ensaio", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Eventos/Index",
-                url: "eventos/index",
+                url: "Eventos/Index",
                 defaults: new { controller = "Evento", action = "Index", id = UrlParameter.Optional }
             );
 
