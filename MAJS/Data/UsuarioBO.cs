@@ -16,6 +16,46 @@ namespace MAJS.Data
             return (WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
         }
 
+        public Usuario GetUsuario(int id)
+        {
+            try
+            {
+                string _conectionstring = ConexaoBanco();
+
+                string buscarUsuario = @"SELECT * FROM Usuarios WHERE IDUsuario = @id";
+
+                SqlConnection sqlConnection = new SqlConnection(_conectionstring);
+
+                sqlConnection.Open();
+
+                Usuario usuario = new Usuario();
+
+                using (SqlCommand sqlCommand = new SqlCommand(buscarUsuario, sqlConnection))
+                {
+                    sqlCommand.Parameters.Add("@id", SqlDbType.VarChar, 50).Value = id;
+                    SqlDataReader reader = sqlCommand.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        usuario.IDUsuario = Convert.ToInt32(reader["IDUsuario"]);
+                        usuario.Nome = reader["Nome"].ToString();
+                        usuario.Sobrenome = reader["Sobrenome"].ToString();
+                        usuario.IDPerfilUsuario = Convert.ToInt32(reader["IDPerfilUsuario"]);
+                        //usuario.IDPerfilMembro = Convert.ToInt32(reader["IDPerfilMembro"]);
+                        usuario.Senha = reader["Senha"].ToString();
+                        usuario.Email = reader["Email"].ToString();
+                        usuario.Sexo = reader["Sexo"].ToString();
+                        usuario.Idade = Convert.ToInt32(reader["Idade"]);
+                    }
+                }
+                return (usuario);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
         public Usuario GetUsuario(string nome)
         {
             try

@@ -133,6 +133,7 @@
     <Compile Include="Controllers\RepertorioController.cs" />
     <Compile Include="Data\EnsaioBO.cs" />
     <Compile Include="Data\EventoBO.cs" />
+    <Compile Include="Data\PostagemBO.cs" />
     <Compile Include="Data\MusicaBO.cs" />
     <Compile Include="Data\UsuarioBO.cs" />
     <Compile Include="Global.asax.cs">

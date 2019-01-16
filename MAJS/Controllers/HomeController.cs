@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MAJS.Data;
+using MAJS.Models;
+using MAJS.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,11 +15,26 @@ namespace MAJS.Controllers
         {
             if (Session["usuarioLogadoID"] != null)
             {
-                return View();
+                List<FeedVM> listafeed = new List<FeedVM>();
+                FeedVM feed = new FeedVM();
+                PostagemBO postagemBO = new PostagemBO();
+                List<Postagem> listaPostagens = postagemBO.GetPostagens();
+
+                for (int i = 0; i < listaPostagens.Count(); i++)
+                {
+                    int usr = listaPostagens[i].IDUsuario;
+                    UsuarioBO usuarioBO = new UsuarioBO();
+                    Usuario usuario = usuarioBO.GetUsuario(usr);
+                    feed.Postagem = listaPostagens[i];
+                    feed.Usuario = usuario;
+                    listafeed.Add(feed);
+                }
+
+                return View(listafeed);
             }
             else
             {
-                return RedirectToAction("Login", "Login");
+                return RedirectToAction("Index", "Login");
             }
         }
 
