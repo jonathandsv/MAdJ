@@ -7,62 +7,100 @@
     <h1>
         Eventos
     </h1>
+    <h3 class="bg-purple">Próximos Eventos</h3>
 </section>
 
 
-<div class="content">
-    <div class="row">
-        <div class="box box-solid">
-            <div class="box-header with-border">
-                <h3>Próximos Eventos</h3>
-                @foreach (var item in Model)
-                {
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="info-box bg-red">
-                            <span class="info-box-icon bg-green"><i class="fa fa-calendar"></i></span>
 
-                            <div class="info-box-content">
-                                <span class="info-box-text">@item.Titulo</span>
-                                <span class="info-box-number">@item.Data</span>
-                                <span class="info-box-number">@item.Hora</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
-    <!-- /.row (main row) -->
 
+
+
+
+
+
+
+<section class="content">
     <div class="row">
         <div class="box box-solid">
 
             <div class="col-md-1 col-sm-12 col-xs-12">
-                <button class="btn info-box-icon bg-green"><i class="fa fa-plus" data-toggle="modal" data-target="#modal-default"></i></button>
+                <button class="btn info-box-icon"><i class="fa fa-plus" data-toggle="modal" data-target="#modal-default"></i></button>
             </div>
 
         </div>
     </div>
 
-    <div class="modal fade" id="modal-default">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title">Adicionar Novo Evento</h4>
+    <div class="row">
+
+
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-3">
+
+                <div class="box">
+                    <div class="box-body box-profile">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-green"><i class="fa fa-calendar"></i></span>
+                            <h3 class="profile-username text-center">@item.Titulo</h3>
+                        </div>
+
+
+
+
+                        <ul class="list-group list-group-unbordered">
+                            <li class="list-group-item">
+                                <b>Data</b> <a class="pull-right">@item.Data</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Hora</b> <a class="pull-right">@item.Hora</a>
+                            </li>
+                        </ul>
+
+                        <a href="#" class="btn bg-purple btn-block"><b>Mais Informações</b></a>
+                    </div>
+                    <!-- /.box-body -->
                 </div>
-                <div class="modal-body">
-                    @Html.Action("CadastrarEvento", "Evento")
-                </div>
+                @*<div class="info-box bg-red">
+                        <span class="info-box-icon bg-green"><i class="fa fa-calendar"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">@item.Titulo</span>
+                            <span class="info-box-number">@item.Data</span>
+                            <span class="info-box-number">@item.Hora</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->*@
             </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
+        }
+
+
+
     </div>
-    <!-- /.modal -->
+
+</section>
+
+
+
+<!-- /.row (main row) -->
+
+
+
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Adicionar Novo Evento</h4>
+            </div>
+            <div class="modal-body">
+                @Html.Action("CadastrarEvento", "Evento")
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div>
-
+<!-- /.modal -->
