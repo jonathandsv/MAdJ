@@ -238,6 +238,7 @@
     <Content Include="Views\Repertorio\Index.cshtml" />
     <Content Include="Views\Repertorio\CadastrarRepertorio.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Evento\AlterarEvento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

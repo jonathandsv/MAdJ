@@ -25,6 +25,15 @@ namespace MAJS.Controllers
             PreencheViewBagListaPerfilEvento();
             return View();
         }
+
+        public ActionResult AlterarEvento(int id)
+        {
+            EventoBO eventoBO = new EventoBO();
+            Evento evento = eventoBO.GetEvento(id);
+
+            return View(evento);
+        }
+
         // Fim da Chamada de Páginas
 
         [HttpPost]
@@ -46,6 +55,14 @@ namespace MAJS.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPut]
+        public ActionResult AlterarEvento(Evento evento)
+        {
+            EventoBO eventoBO = new EventoBO();
+
+            Evento evento = eventoBO.ModificarEvento(evento);
+            return null;
+        }
         private void PreencheViewBagListaPerfilEvento()
         {
             EventoBO eventoBO = new EventoBO();

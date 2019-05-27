@@ -17,7 +17,44 @@ namespace MAJS.Data
         }
         public Evento GetEvento(int id)
         {
-            return (null);
+            try
+            {
+                string _connectionstring = ConexaoBanco();
+
+                string select = @"SELECT * FROM Eventos WHERE IDEvento = @IDEvento";
+
+                Evento evento = new Evento();
+
+                using (var sqlConnection = new SqlConnection(_connectionstring))
+                {
+                    sqlConnection.Open();
+                    using (var sqlCommand = new SqlCommand(select, sqlConnection))
+                    {
+                        sqlCommand.Parameters.Add("@IDEvento", SqlDbType.Int).Value = id;
+
+                        SqlDataReader reader = sqlCommand.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            evento.IDEvento = Convert.ToInt32(reader["IDEvento"]);
+                            evento.IDEventoPerfil = Convert.ToInt32(reader["IDEventoPerfil"]);
+                            evento.Titulo = reader["Titulo"].ToString();
+                            evento.Descricao = reader["Descricao"].ToString();
+                            evento.Hora = TimeSpan.Parse(reader["Hora"].ToString());
+                            evento.Data = DateTime.Parse(reader["Data"].ToString());
+                            evento.Local = reader["Local"].ToString();
+                        }
+                        sqlConnection.Close();
+                    }
+                }
+                return (evento);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public List<Evento> GetEventos()
@@ -130,6 +167,44 @@ namespace MAJS.Data
                 throw ex;
             }
             
+        }
+
+        public bool ModificarEvento(Evento evento)
+        {
+            try
+            {
+                string _conectionstring = ConexaoBanco();
+
+                string update = @"UPDATE Eventos SET Titulo = @Titulo, Descricao = @Descricao, Hora = @Hora, Data = @Data, Local = @Local 
+                                    WHERE IDEvento = @IDEvento";
+                var result = 0;
+
+                using (var sqlConnection = new SqlConnection(_conectionstring))
+                {
+                    sqlConnection.Open();
+                    using (var sqlCommand = new SqlCommand(update, sqlConnection))
+                    {
+                        sqlCommand.Parameters.Add("@IDEvento", SqlDbType.Int).Value = evento.IDEvento;
+                        sqlCommand.Parameters.Add("@Titulo", SqlDbType.VarChar).Value = evento.Titulo;
+                        sqlCommand.Parameters.Add("@Descricao", SqlDbType.VarChar).Value = evento.Descricao;
+                        sqlCommand.Parameters.Add("@Hora", SqlDbType.Time).Value = evento.Hora;
+                        sqlCommand.Parameters.Add("@Data", SqlDbType.DateTime).Value = evento.Data;
+                        sqlCommand.Parameters.Add("@Local", SqlDbType.VarChar).Value = evento.Local;
+                        result = sqlCommand.ExecuteNonQuery();
+                    }
+                    sqlConnection.Close();
+                }
+                if (result >= 1)
+                    return true;
+                else
+                    return false;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }
