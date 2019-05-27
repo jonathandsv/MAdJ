@@ -7,61 +7,93 @@
     <h1>
         Ensaios
     </h1>
+    <h3>Próximos Eventos</h3>
 </section>
 
-<div class="content">
-    <div class="row">
-        <div class="box box-solid">
-            <div class="box-header with-border">
-                <h3>Próximos Eventos</h3>
-                @foreach (var item in Model)
-                {
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="info-box bg-red">
-                            <span class="info-box-icon bg-green"><i class="fa fa-calendar"></i></span>
 
-                            <div class="info-box-content">
-                                <span class="info-box-text">@item.Titulo</span>
-                                <span class="info-box-number">@item.Data</span>
-                                <span class="info-box-number">@item.Hora</span>
-                                <span class="info-box-number">@item.Local</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
-    <!-- /.row (main row) -->
 
+<section class="content">
     <div class="row">
         <div class="box box-solid">
 
             <div class="col-md-1 col-sm-12 col-xs-12">
-                <button class="btn info-box-icon bg-green"><i class="fa fa-plus" data-toggle="modal" data-target="#modal-default"></i></button>
+                <button class="btn bg-purple"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-plus"></i> Adicionar</button>
             </div>
 
         </div>
     </div>
+    <hr />
+    <div class="row">
 
-    <div class="modal fade" id="modal-default">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title">Adicionar Novo Ensaio</h4>
+        @foreach (var item in Model)
+        {
+            @*<div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box bg-red">
+                    <span class="info-box-icon bg-green"><i class="fa fa-calendar"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">@item.Titulo</span>
+                        <span class="info-box-number">@item.Data</span>
+                        <span class="info-box-number">@item.Hora</span>
+                        <span class="info-box-number">@item.Local</span>
+                    </div>
+                    <!-- /.info-box-content -->
                 </div>
-                <div class="modal-body">
-                    @Html.Action("CadastrarEnsaio", "Ensaio")
+                <!-- /.info-box -->
+            </div>*@
+
+            <div class="col-sm-3">
+
+                <div class="box collapsed-box">
+                    <div class="box-header with-border">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-green"><i class="fa fa-calendar"></i></span>
+                            <h3 class="profile-username text-center">@item.Titulo</h3>
+                        </div>
+                        <b>Data</b> <a class="pull-right">@item.Data.ToString("dd/MM/yyyy")</a>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="box-body box-profile">
+                        
+                        <ul class="list-group list-group-unbordered">
+                            <li class="list-group-item">
+                                <b>Hora</b> <a class="pull-right">@item.Hora</a>
+                            </li>
+                            <li class="list-group-item">
+                                <b>Hora</b> <a class="pull-right">@item.Local</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
+        }
     </div>
-    <!-- /.modal -->
+    <!-- /.row (main row) -->
+
+
+
+
+</section>
+
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Adicionar Novo Ensaio</h4>
+            </div>
+            <div class="modal-body">
+                @Html.Action("CadastrarEnsaio", "Ensaio")
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div>
+<!-- /.modal -->
