@@ -22,6 +22,14 @@ namespace MAJS.Controllers
         {
             return View();
         }
+
+        public ActionResult AlterarEnsaio(int id)
+        {
+            EnsaioBO eventoBO = new EnsaioBO();
+            Ensaio evento = eventoBO.GetEnsaio(id);
+
+            return View(evento);
+        }
         // Fim da Chamada de Páginas
 
         [HttpPost]

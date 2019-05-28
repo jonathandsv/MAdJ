@@ -17,7 +17,43 @@ namespace MAJS.Data
         }
         public Ensaio GetEnsaio(int id)
         {
-            return (null);
+            try
+            {
+                string _connectionstring = ConexaoBanco();
+
+                string select = @"SELECT * FROM Ensaios WHERE IDEnsaios = @IDEnsaio";
+
+                Ensaio ensaio = new Ensaio();
+
+                using (var sqlConnection = new SqlConnection(_connectionstring))
+                {
+                    sqlConnection.Open();
+                    using (var sqlCommand = new SqlCommand(select, sqlConnection))
+                    {
+                        sqlCommand.Parameters.Add("@IDEnsaio", SqlDbType.Int).Value = id;
+
+                        SqlDataReader reader = sqlCommand.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            ensaio.IDEnsaios = Convert.ToInt32(reader["IDEnsaios"]);
+                            ensaio.Titulo = reader["Titulo"].ToString();
+                            ensaio.Descricao = reader["Descricao"].ToString();
+                            ensaio.Hora = TimeSpan.Parse(reader["Hora"].ToString());
+                            ensaio.Data = DateTime.Parse(reader["Data"].ToString());
+                            ensaio.Local = reader["Local"].ToString();
+                        }
+                        sqlConnection.Close();
+                    }
+                }
+                return (ensaio);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public List<Ensaio> GetEnsaios()

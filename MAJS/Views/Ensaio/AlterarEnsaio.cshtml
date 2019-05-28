@@ -1,0 +1,91 @@
+﻿@model MAJS.Models.Ensaio
+@{
+    ViewBag.Title = "AlterarEnsaio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        Alterar Evento
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index", "Ensaio")"><i class="fa fa-dashboard"></i> Eventos</a></li>
+        <li class="active">Alterar Evento</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Altere as informações do Evento</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                @using (Html.BeginForm("AlterarEvento", "Ensaio", FormMethod.Post))
+                {
+                    @Html.HiddenFor(x => x.IDEnsaios);
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label>Digite o Título do Evento</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-pencil"></i>
+                                </div>
+                                @Html.TextBoxFor(x => x.Titulo, new { @class = "form-control", type = "text", placeholder = "Título..." })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Digite a Descrição do Evento</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-edit"></i>
+                                </div>
+                                @Html.TextAreaFor(x => x.Descricao, new { @class = "form-control", type = "text", placeholder = "Descrição..." })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Data</label>
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                @Html.TextBoxFor(x => x.Data, new { @class = "form-control", type = "text", tipo = "data" })
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                        <div class="form-group">
+                            <label>Hora</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                @Html.TextBoxFor(x => x.Hora, new { @class = "form-control", type = "text", tipo = "hora" })
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+                        <div class="form-group">
+                            <label>Digite o Local do Evento</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-map"></i>
+                                </div>
+                                @Html.TextBoxFor(x => x.Local, new { @class = "form-control", type = "text", placeholder = "Local..." })
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-danger pull-right">Alterar</button>
+                        <a href="@Url.Action("Index", "Ensaio")" class="btn btn-warning pull-left">Cancelar</a>
+                    </div>
+                }
+                </div>
+        </div>
+    </div>
+
+</section>
+
+
