@@ -23,7 +23,9 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form role="form">
+                @using (Html.BeginForm("AlterarEvento", "Evento", FormMethod.Post))
+                {
+                    @Html.HiddenFor(x => x.IDEvento);
                     <div class="box-body">
                         <div class="form-group">
                             <label>Digite o Título do Evento</label>
@@ -79,8 +81,8 @@
                         <button type="submit" class="btn btn-danger pull-right">Alterar</button>
                         <a href="@Url.Action("Index", "Evento")" class="btn btn-warning pull-left">Cancelar</a>
                     </div>
-                </form>
-            </div>
+                }
+                </div>
         </div>
     </div>
 

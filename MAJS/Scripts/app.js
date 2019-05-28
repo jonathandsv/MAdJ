@@ -88,3 +88,23 @@ $("#selectEventoPerfil").change(function () {
 //        val.value = val.value.substring(0, 10);
 //    return true;
 //}
+
+$(".excluirEvento").click(function () {
+
+    var idEvento = $(this).attr("idEvento");
+
+    GerarExcluirEvento(idEvento);
+});
+
+function GerarExcluirEvento(idEvento) {
+
+    //Montando o botão
+    var botao = document.createElement("a");
+    var conteudo = document.createTextNode("Excluir");
+    botao.setAttribute(`href`, `DeleteEvento?id=${idEvento}`);
+    botao.setAttribute(`class`, `btn btn-outline`);
+    botao.appendChild(conteudo);
+
+    document.getElementById("footerModal").appendChild(botao);
+
+}

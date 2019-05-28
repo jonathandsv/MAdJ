@@ -49,10 +49,19 @@
                                 <b>Hora</b> <a class="pull-right">@item.Hora</a>
                             </li>
                             <li class="list-group-item">
+                                <label>Descrição</label> <p>@item.Descricao</p>
+                            </li>
+                            <li class="list-group-item">
                                 <div class="pull-right">
                                     <a href="@Url.Action("AlterarEvento", "Evento", new { id = item.IDEvento})" class="btn btn-warning">
                                         <i class="fa fa-edit"></i>
                                     </a>
+                                    @*<a href="@Url.Action("DeleteEvento", "Evento", new { id = item.IDEvento})" class="btn btn-danger">
+                                        <i class="fa  fa-trash"></i>
+                                    </a>*@
+                                    <button type="button" idEvento="@item.IDEvento" class="btn btn-danger excluirEvento" data-toggle="modal" data-target="#modal-danger">
+                                        <i class="fa  fa-trash"></i>
+                                    </button>
                                 </div>
                             </li>
                         </ul>
@@ -77,13 +86,35 @@
 
     </div>
 
+    
+
 </section>
 
 
 
 <!-- /.row (main row) -->
 
-
+<div class="modal modal-danger fade in" id="modal-danger" style="display: none; padding-right: 17px;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title">Alerta</h4>
+            </div>
+            <div class="modal-body">
+                <p>Deseja realmente excluir esse evento?</p>
+            </div>
+            <div class="modal-footer" id="footerModal">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Fechar</button>
+                @*<a href="" class="btn btn-outline">Excluir</a>*@
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 
 <div class="modal fade" id="modal-default">
     <div class="modal-dialog">

@@ -63,7 +63,7 @@ namespace MAJS.Data
             {
                 string _conectionstring = ConexaoBanco();
 
-                string buscarEventos = @"SELECT * FROM Eventos";
+                string buscarEventos = @"SELECT * FROM Eventos WHERE Excluido = 0";
 
                 SqlConnection sqlConnection = new SqlConnection(_conectionstring);
 
@@ -198,6 +198,36 @@ namespace MAJS.Data
                     return true;
                 else
                     return false;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public bool DeleteEvento(int id)
+        {
+            try
+            {
+                string _conectionstring = ConexaoBanco();
+                string delete = @"UPDATE Eventos SET Excluido = 1 WHERE IDEvento = @id";
+                var result = 0;
+
+                using (var sqlConnection = new SqlConnection(_conectionstring))
+                {
+                    sqlConnection.Open();
+                    using (var sqlCommand = new SqlCommand(delete, sqlConnection))
+                    {
+                        sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = id;
+
+                        result = sqlCommand.ExecuteNonQuery();
+
+                        sqlConnection.Close();
+                    }
+                }
+                return result >= 1 ? true : false;
 
             }
             catch (Exception ex)

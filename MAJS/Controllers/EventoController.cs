@@ -55,13 +55,23 @@ namespace MAJS.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPut]
+        [HttpPost]
         public ActionResult AlterarEvento(Evento evento)
         {
             EventoBO eventoBO = new EventoBO();
 
-            Evento evento = eventoBO.ModificarEvento(evento);
-            return null;
+            bool result = eventoBO.ModificarEvento(evento);
+            return RedirectToAction("Index", "Evento");
+        }
+
+        [HttpGet]
+        public ActionResult DeleteEvento(int id)
+        {
+            EventoBO eventoBO = new EventoBO();
+
+            bool result = eventoBO.DeleteEvento(id);
+
+            return RedirectToAction("Index");
         }
         private void PreencheViewBagListaPerfilEvento()
         {

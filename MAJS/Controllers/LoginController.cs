@@ -31,7 +31,7 @@ namespace MAJS.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
-            return View(usuario);
+            return RedirectToAction("Index", "Login");
         }
 
         public ActionResult Logoff()

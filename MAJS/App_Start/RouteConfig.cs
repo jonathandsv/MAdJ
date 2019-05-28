@@ -26,8 +26,8 @@ namespace MAJS
             );
 
             routes.MapRoute(
-                name: "Eventos/Index",
-                url: "Eventos/Index",
+                name: "Evento/Index",
+                url: "Evento/Index",
                 defaults: new { controller = "Evento", action = "Index", id = UrlParameter.Optional }
             );
 
@@ -41,6 +41,12 @@ namespace MAJS
                 name: "Repertorio/Index",
                 url: "Repertorio/Index",
                 defaults: new { Controller = "Repertorio", action = "Index", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Evento/DeleteEvento",
+                url: "Evento/DeleteEvento",
+                defaults: new { Controller = "Evento", action = "DeleteEvento", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(
